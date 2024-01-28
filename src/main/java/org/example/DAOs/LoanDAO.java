@@ -1,11 +1,9 @@
 package org.example.DAOs;
 
-import org.example.Classes.CatalogItem;
 import org.example.Classes.Loan;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import java.util.UUID;
 
 public class LoanDAO {
     private final EntityManager em;
@@ -24,15 +22,15 @@ public class LoanDAO {
         System.out.println(" loan added with success");
     }
 
-    public CatalogItem getByISBN() {
-        return em.find(CatalogItem.class, isbn);
+    public Loan getById(Long id) {
+        return em.find(Loan.class, id);
     }
 
-    public void deleteByISBN(UUID isbn) {
+    public void deleteById(Loan id) {
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
-        em.remove(em.find(CatalogItem.class, isbn));
+        em.remove(em.find(Loan.class, id));
         transaction.commit();
-        System.out.println("item deleted with success");
+        System.out.println("loan deleted with success");
     }
 }
